@@ -1,3 +1,3 @@
-# Learn nodejs from net ninja tutorial
+# lesson-2
 
-- switch branch for detail lessons
+- http
