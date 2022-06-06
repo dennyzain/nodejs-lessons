@@ -5,10 +5,10 @@ const fs = require('fs'); // fs = file system module (core module)
 //const readSync = fs.readFileSync('./text/greet.txt'); // readFileSync = synchronous method
 // console.log(readSync.toString());
 
-// fs.readFile('./text/greet.txt', (err, data) => {
-//   if (err) throw err;
-//   console.log(data.toString());
-// }); // readFile = asynchronous method
+fs.readFile('./text/greet.txt', (err, data) => {
+  if (err) throw err;
+  console.log(data.toString());
+}); // readFile = asynchronous method
 
 //console.log('last line'); // last line will be printed before the result of readFile because it is asynchronous
 
@@ -47,18 +47,41 @@ const fs = require('fs'); // fs = file system module (core module)
 
 // ? deleting files
 
-if (fs.existsSync('text/greet.txt')) {
-  fs.unlink('text/greet.txt', (err) => {
-    if (err) console.log(err);
-    console.log('greet.txt deleted');
-  }); // unlink = asynchronous method (callback function)
-} else {
-  fs.writeFile('text/greet.txt', 'Hello, denny abbas. how are you?', (err) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log('greet.txt created');
-  });
-}
+// if (fs.existsSync('text/greet.txt')) {
+//   fs.unlink('text/greet.txt', (err) => {
+//     if (err) console.log(err);
+//     console.log('greet.txt deleted');
+//   }); // unlink = asynchronous method (callback function)
+// } else {
+//   fs.writeFile('text/greet.txt', 'Hello, denny abbas. how are you?', (err) => {
+//     if (err) {
+//       console.log(err);
+//     }
+//     console.log('greet.txt created');
+//   });
+// }
 // unlink for delete the file not folder
 // fs.unlinkSync('text/greet.txt'); // unlinkSync = synchronous method
+
+// ! create greet text
+let num = 1;
+const appendTextToGreetFile = () => {
+  fs.appendFile(
+    'text/greet.txt',
+    `\n ${num} Hello, denny abbas. how are you? Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laborum temporibus deserunt vero eaque earum esse, officia eius voluptates fuga quaerat provident facere corrupti dolorum. Soluta architecto tenetur quae laboriosam?`,
+    (err) => {
+      if (err) {
+        console.log(err);
+      }
+      console.log('greet.txt added without replace text of the file');
+      num++;
+    }
+  );
+};
+const creatingText = setInterval(() => {
+  appendTextToGreetFile();
+}, 100);
+
+setTimeout(() => {
+  clearInterval(creatingText);
+}, 100000);
