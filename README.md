@@ -1,9 +1,5 @@
-# lesson-2
+# lesson-3
 
-- ip addresses
-- http
-- port and localhost
+- response and request
 
 ## source for details
-
-- https://nodejs.org/dist/latest-v16.x/docs/api/net.html
